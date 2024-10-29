@@ -7,3 +7,10 @@ public class Multiplication{
 	}
      }
 }
+
+
+
+for(int = i; i < 6; i++){
+	product = 5 * i;
+System.out.print("5 * " + " i " + " = " + product);
+}
