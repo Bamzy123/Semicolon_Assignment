@@ -5,7 +5,6 @@ public class NaturalNumber{
     Scanner input = new Scanner(System.in);
 
     int count = 1;
-    
     int naturalNumber = 0;
 
     while(count < 11) {

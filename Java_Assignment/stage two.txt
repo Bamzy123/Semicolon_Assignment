@@ -1,0 +1,14 @@
+stage two
+write a java program that accept three number and check all number are equal to or not
+
+prompt user to input first number
+collect and store input as first
+prompt user to input second number
+collect input and store it as second
+prompt user to input three number
+collect input and store it as three
+if first is equal to second
+print they are equal
+if first is not equal to second
+print thy are not equal
+display result

@@ -8,8 +8,8 @@ public class RandomNumber{
 
 	Scanner input = new Scanner(System.in);
 
-	int randomNumber = random.nextInt(30);
-
+	int randomNumber = random.nextInt(1,10);
+	System.out.print("randomNumber");
 	int userGuess = 0;
 
 	while(userGuess != randomNumber){
