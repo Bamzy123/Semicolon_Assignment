@@ -234,7 +234,7 @@ public class Nokia {
 								case 2:
 									System.out.println("Call barring service");break;
 								case 3:
-									System.out.println("Fixed dailing");break;
+									System.out.println("Fixed dialling");break;
 								case 4:
 									System.out.println("Closed user group");break;
 								case 5:
@@ -244,7 +244,8 @@ public class Nokia {
 					}break;
 					case 4:
 						System.out.println("restore factory settings");
-				}break;
+					}
+					 break;
 		case 7:
 			System.out.println("Call divert");break;
 		case 8:
@@ -253,7 +254,28 @@ public class Nokia {
 			System.out.println("Calculator");break;
 		case 10:
 			System.out.println("Reminders");break;
+		case 11:
+			System.out.println("Clock:\n 1. Alarm clock \n 2. Clock settings \n 3. Date setting \n 4. Stopwatch \n 5. Countdown timer \n 6. Auto update and time");
+			int time = input.nextInt();
 
+				switch(time){
+					case 1:
+						System.out.println("Alarm clock");break;
+					case 2:
+						System.out.println("Clock settings");break;
+					case 3:
+						System.out.println("Date setting");break;
+					case 4:
+						System.out.println("Stopwatch");break;
+					case 5:
+						System.out.println("Countdown timer");break;
+					case 6:
+						System.out.println("Auto update and time");
+				}break;
+		case 12:
+			 System.out.println("Profiles");break;
+		case 13:
+			 System.out.println("SIM services");break;
 			}
 		}
 	}
