@@ -32,10 +32,10 @@ class Room {
 }
 
 class Guest {
-    String name;
-    String phoneNumber;
-    String email;
-    String bookingReference;
+    protected String name;
+    protected String phoneNumber;
+    protected String email;
+     String bookingReference;
 
     Guest(String name, String phoneNumber, String email, String bookingReference) {
         this.name = name;
@@ -138,7 +138,7 @@ class HotelSystem {
         }
     }
 
-    void displayBookingDetails(Guest guest, Room room, int nights, double totalPayment, Date checkInDate, Date checkOutDate) {
+    public void displayBookingDetails(Guest guest, Room room, int nights, double totalPayment, Date checkInDate, Date checkOutDate) {
         System.out.println("Booking Successful!");
         System.out.println("Guest Details:");
         System.out.println(" Name: " + guest.name);
@@ -308,7 +308,7 @@ public class HotelBooking {
                     System.out.println("Thank you for using Naija Comfort Inn System!");
                     return;
                 default:
-                    System.out.println("Invalid Option. Try again.");
+                    System.out.println("Invalid Option, Try again....");
             }
         }
     }
