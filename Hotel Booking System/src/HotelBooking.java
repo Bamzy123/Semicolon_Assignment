@@ -44,7 +44,7 @@ class Guest {
         this.bookingReference = bookingReference;
     }
 
-    void getDetails() {
+    public void getDetails() {
         System.out.println("Guest Details:");
         System.out.println("Name: " + name);
         System.out.println("Phone: " + phoneNumber);
@@ -52,7 +52,7 @@ class Guest {
         System.out.println("Booking Reference: " + bookingReference);
     }
 
-    void editDetails(String newName, String newPhone, String newEmail) {
+    public void editDetails(String newName, String newPhone, String newEmail) {
         if (!newName.isEmpty()) this.name = newName;
         if (!newPhone.isEmpty()) this.phoneNumber = newPhone;
         if (!newEmail.isEmpty()) this.email = newEmail;
@@ -75,7 +75,7 @@ class Booking {
         this.totalPayment = totalPayment;
     }
 
-    static double calculatePayment(double pricePerNight, int days, boolean festivePeriod, double multiplier) {
+    public static double calculatePayment(double pricePerNight, int days, boolean festivePeriod, double multiplier) {
         double total = pricePerNight * days;
         if (festivePeriod) {
             total *= multiplier;
@@ -83,7 +83,7 @@ class Booking {
         return total;
     }
 
-    static void displayPaymentDetails(String roomType, double pricePerNight, int days, boolean festivePeriod, double multiplier) {
+    public static void displayPaymentDetails(String roomType, double pricePerNight, int days, boolean festivePeriod, double multiplier) {
         double total = calculatePayment(pricePerNight, days, festivePeriod, multiplier);
         System.out.println("Room Type: " + roomType);
         System.out.println("Price per Night: ₦" + pricePerNight);
@@ -93,7 +93,7 @@ class Booking {
         System.out.println("Total Payment: ₦" + total);
     }
 
-    void cancelBooking() {
+    public void cancelBooking() {
         room.markAsAvailable();
         System.out.println("Booking canceled successfully.");
     }
@@ -106,13 +106,13 @@ class HotelSystem {
     double festivePeriodMultiplier = 1.2;
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 
-    void initializeRooms() {
+    public void initializeRooms() {
         rooms.add(new Room(101, "Single", 10000));
         rooms.add(new Room(102, "Double", 15000));
         rooms.add(new Room(103, "Suite", 25000));
     }
 
-    void bookRoom(String guestName, String phone, String email, String roomType, int nights, boolean festivePeriod, String checkInDateStr) {
+    public void bookRoom(String guestName, String phone, String email, String roomType, int nights, boolean festivePeriod, String checkInDateStr) {
         try {
             Date checkInDate = dateFormat.parse(checkInDateStr);
             Calendar calendar = Calendar.getInstance();
@@ -154,7 +154,7 @@ class HotelSystem {
         System.out.println(" Check-out Date: " + dateFormat.format(checkOutDate));
     }
 
-    void viewBooking(String bookingReference) {
+    public void viewBooking(String bookingReference) {
         for (Booking booking : bookings) {
             if (booking.guest.bookingReference.equals(bookingReference)) {
                 displayBookingDetails(booking.guest, booking.room, 0, booking.totalPayment, booking.checkInDate, booking.checkOutDate);
@@ -164,7 +164,7 @@ class HotelSystem {
         System.out.println("Booking not found.");
     }
 
-    void editProfile(String bookingReference, String newName, String newPhone, String newEmail) {
+    public void editProfile(String bookingReference, String newName, String newPhone, String newEmail) {
         for (Booking booking : bookings) {
             if (booking.guest.bookingReference.equals(bookingReference)) {
                 booking.guest.editDetails(newName, newPhone, newEmail);
@@ -174,7 +174,7 @@ class HotelSystem {
         System.out.println("Booking not found.");
     }
 
-    void checkRoomAvailability(String startDateStr, String endDateStr) {
+    public void checkRoomAvailability(String startDateStr, String endDateStr) {
         try {
             Date startDate = dateFormat.parse(startDateStr);
             Date endDate = dateFormat.parse(endDateStr);
@@ -198,14 +198,14 @@ class HotelSystem {
         }
     }
 
-    void viewNotifications() {
+    public void viewNotifications() {
         System.out.println("Notifications:");
         for (String notification : notifications) {
             System.out.println("- " + notification);
         }
     }
 
-    void cancelBooking(String bookingReference) {
+    public void cancelBooking(String bookingReference) {
         Iterator<Booking> iterator = bookings.iterator();
         while (iterator.hasNext()) {
             Booking booking = iterator.next();
@@ -220,7 +220,7 @@ class HotelSystem {
         System.out.println("Booking not found.");
     }
 
-    void viewAvailableRooms() {
+    public void viewAvailableRooms() {
         System.out.println("All Available Rooms:");
         for (Room room : rooms) {
             if (room.isAvailable && !room.needsMaintenance) {
