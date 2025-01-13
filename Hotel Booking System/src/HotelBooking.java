@@ -16,16 +16,16 @@ class Room {
         this.needsMaintenance = false;
     }
 
-    void markAsOccupied() {
+    public void markAsOccupied() {
         isAvailable = false;
     }
 
-    void markAsAvailable() {
+    public void markAsAvailable() {
         isAvailable = true;
         needsMaintenance = false;
     }
 
-    void markAsUnderMaintenance() {
+    public void markAsUnderMaintenance() {
         isAvailable = false;
         needsMaintenance = true;
     }
@@ -108,8 +108,8 @@ class HotelSystem {
 
     public void initializeRooms() {
         rooms.add(new Room(101, "Single", 10000));
-        rooms.add(new Room(102, "Double", 15000));
-        rooms.add(new Room(103, "Suite", 25000));
+        rooms.add(new Room(203, "Double", 15000));
+        rooms.add(new Room(301, "Suite", 25000));
     }
 
     public void bookRoom(String guestName, String phone, String email, String roomType, int nights, boolean festivePeriod, String checkInDateStr) {
