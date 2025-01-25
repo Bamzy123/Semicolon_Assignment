@@ -29,7 +29,7 @@ public class MyMapTest {
         myMap.put("stephen", 20);
         myMap.put("sam", 30);
         myMap.put("ayo", 19);
-        myMap.get("sam", 30);
-        assertEquals(2,myMap.size());
+        myMap.get("sam");
+        assertEquals(3,myMap.size());
     }
 }

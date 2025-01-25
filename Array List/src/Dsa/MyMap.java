@@ -22,4 +22,8 @@ public class MyMap {
     public int size() {
         return map.size();
     }
+
+    public void get(String sam) {
+        map.get(sam);
+    }
 }
