@@ -5,17 +5,21 @@ import java.util.Map;
 
 public class MyMap {
 
-    private final Map<Integer,Integer> map;
+    private final Map<String,Integer> map;
 
     public MyMap() {
-        map = new HashMap<Integer,Integer>();
+        map = new HashMap<String,Integer>();
     }
 
     public boolean isEmpty() {
         return map.isEmpty();
     }
 
-    public void containsKey(int number) {
-        map.containsKey(number);
+    public void put(String key, int value) {
+        map.put(key, value);
+    }
+
+    public int size() {
+        return map.size();
     }
 }
