@@ -22,4 +22,14 @@ public class MyMapTest {
         myMap.put("ayo", 19);
         assertEquals(3,myMap.size());
     }
+
+    @Test
+    public void testToGetObject() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        myMap.get("sam", 30);
+        assertEquals(2,myMap.size());
+    }
 }
