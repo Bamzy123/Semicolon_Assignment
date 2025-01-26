@@ -41,4 +41,14 @@ public class MyMapTest {
         myMap.put("ayo", 19);
         assertTrue(myMap.contains("ayo"));
     }
+
+    @Test
+    public void testThatMyMapContainsValue() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        assertTrue(myMap.containsValue(19));
+
+    }
 }

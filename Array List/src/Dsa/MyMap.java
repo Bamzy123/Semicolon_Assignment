@@ -27,7 +27,11 @@ public class MyMap {
         map.get(sam);
     }
 
-    public boolean contains(String ayo) {
-        return map.containsKey(ayo);
+    public boolean contains(String key) {
+        return map.containsKey(key);
+    }
+
+    public boolean containsValue(int value) {
+        return map.containsValue(value);
     }
 }
