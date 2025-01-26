@@ -49,6 +49,15 @@ public class MyMapTest {
         myMap.put("sam", 30);
         myMap.put("ayo", 19);
         assertTrue(myMap.containsValue(19));
+    }
 
+    @Test
+    public void testThatKeyAndValueCanBeRemoved() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        myMap.remove("stephen");
+        assertEquals(2,myMap.size());
     }
 }

@@ -34,4 +34,8 @@ public class MyMap {
     public boolean containsValue(int value) {
         return map.containsValue(value);
     }
+
+    public void remove(String name) {
+        map.remove(name);
+    }
 }
