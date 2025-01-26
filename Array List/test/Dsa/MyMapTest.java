@@ -32,4 +32,13 @@ public class MyMapTest {
         myMap.get("sam");
         assertEquals(3,myMap.size());
     }
+
+    @Test
+    public void testThatMyMapContainsKey() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        assertTrue(myMap.contains("ayo"));
+    }
 }

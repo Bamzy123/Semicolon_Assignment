@@ -26,4 +26,8 @@ public class MyMap {
     public void get(String sam) {
         map.get(sam);
     }
+
+    public boolean contains(String ayo) {
+        return map.containsKey(ayo);
+    }
 }
