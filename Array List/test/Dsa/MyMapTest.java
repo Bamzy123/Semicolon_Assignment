@@ -70,4 +70,24 @@ public class MyMapTest {
         myMap.key();
         assertEquals(3,myMap.size());
     }
+
+    @Test
+    public void testForTheReturnOfAllValuesInTheMap() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        myMap.values();
+        assertEquals(3,myMap.size());
+    }
+
+    @Test
+    public void testForTheReturnOfAllValuesInTheMapWithKeys() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        myMap.keyValue();
+        assertEquals(3,myMap.size());
+    }
 }
