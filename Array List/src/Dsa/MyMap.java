@@ -38,4 +38,10 @@ public class MyMap {
     public void remove(String name) {
         map.remove(name);
     }
+
+    public void key() {
+       for (String key : map.keySet()) {
+           System.out.println(key);
+       }
+    }
 }

@@ -60,4 +60,14 @@ public class MyMapTest {
         myMap.remove("stephen");
         assertEquals(2,myMap.size());
     }
+
+    @Test
+    public void testForTheReturnOfAllKeysInTheMap() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        myMap.key();
+        assertEquals(3,myMap.size());
+    }
 }
