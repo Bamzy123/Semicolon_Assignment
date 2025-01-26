@@ -56,4 +56,8 @@ public class MyMap {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
     }
+
+    public void clear() {
+        map.clear();
+    }
 }

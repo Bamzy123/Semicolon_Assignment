@@ -90,4 +90,14 @@ public class MyMapTest {
         myMap.keyValue();
         assertEquals(3,myMap.size());
     }
+
+    @Test
+    public void testThatAllKeysAndValueCanBeCleared() {
+        MyMap myMap = new MyMap();
+        myMap.put("stephen", 20);
+        myMap.put("sam", 30);
+        myMap.put("ayo", 19);
+        myMap.clear();
+        assertEquals(0,myMap.size());
+    }
 }
