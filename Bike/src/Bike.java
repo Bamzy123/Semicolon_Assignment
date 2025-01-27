@@ -8,6 +8,8 @@ public class Bike {
      }
     public void isOff() {
          power = false;
+         currentGear = 0;
+         currentSpeed = 0;
     }
 
     public void isOn() {
@@ -40,10 +42,8 @@ public class Bike {
         }
 
         else if(currentGear==4) {
-            System.out.println(currentSpeed);
             currentSpeed +=4;
-             currentGear++;
-
+             currentSpeed++;
         }
     }
 

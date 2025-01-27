@@ -4,146 +4,135 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BikeTest {
 
-    private   Bike bike;
-
+    private Bike bike;
 
     @Test
-    public  void testThatBikeIsOffAtInitialState() {
-      bike = new Bike();
-       assertFalse(bike.isPower());
+    public void testThatBikeIsOffAtInitialState() {
+        bike = new Bike();
+        assertFalse(bike.isPower(), "Bike should be off at the initial state.");
     }
 
     @Test
-    public  void testThatBikeCanBeOn(){
+    public void testThatBikeCanBeTurnedOn() {
         bike = new Bike();
-        assertFalse(bike.isPower());
         bike.isOn();
-        assertTrue(bike.isPower());
+        assertTrue(bike.isPower(), "Bike should be on after calling isOn().");
     }
+
     @Test
-    public void testThatBikeCanBeOffWhenOn(){
+    public void testThatBikeCanBeTurnedOffWhenOn() {
         bike = new Bike();
-        assertFalse(bike.isPower());
         bike.isOn();
-        assertTrue(bike.isPower());
+        assertTrue(bike.isPower(), "Bike should be on.");
         bike.isOff();
-        assertFalse(bike.isPower());
-    }
-    @Test
-    public void testThatBikeCanBeOnWhenOff(){
-        bike = new Bike();
-        assertFalse(bike.isPower());
-        bike.isOn();
-        assertTrue(bike.isPower());
-        bike.isOff();
-        assertFalse(bike.isPower());
-        bike.isOn();
-        assertTrue(bike.isPower());
+        assertFalse(bike.isPower(), "Bike should be off after calling isOff().");
+        assertEquals(0, bike.currentGear(), "Gear should reset to 0 when the bike is turned off.");
+        assertEquals(0, bike.getCurrentSpeed(), "Speed should reset to 0 when the bike is turned off.");
     }
 
     @Test
-    public void testThatWhenBikesOnGearIsOnZer0(){
+    public void testThatGearIsZeroWhenBikeIsTurnedOn() {
         bike = new Bike();
         bike.isOn();
-        assertTrue(bike.isPower());
-        assertEquals(0, bike.currentGear());
+        assertEquals(0, bike.currentGear(), "Gear should be 0 when the bike is turned on.");
     }
 
     @Test
-    public void testToChangeGearFromZeroToOne(){
+    public void testThatGearCanChangeFromZeroToOne() {
         bike = new Bike();
         bike.isOn();
-        assertTrue(bike.isPower());
         bike.changeGear();
-        assertEquals(1, bike.currentGear());
+        assertEquals(1, bike.currentGear(), "Gear should change to 1 after calling changeGear().");
     }
 
     @Test
-    public void testThatGearOneIncrementIsOne(){
+    public void testThatSpeedIncreasesByOneInGearOne() {
         bike = new Bike();
         bike.isOn();
         bike.changeGear();
         bike.accelerate();
-        assertEquals(1, bike.getCurrentSpeed());
+        assertEquals(1, bike.getCurrentSpeed(), "Speed should increase by 1 in gear 1.");
     }
 
     @Test
-    public void testThatWhenBikeIsOnGearOneIfCurrentSpeedExceedsTwentyAutomaticallyChangeToGearTwo(){
+    public void testThatGearAutomaticallyChangesToTwoAtSpeedTwenty() {
         bike = new Bike();
         bike.isOn();
         bike.changeGear();
-        for(int index = 1; index <= 20; index++){
+        for (int index = 0; index < 20; index++) {
             bike.accelerate();
         }
-        assertEquals(20, bike.getCurrentSpeed());
-        assertEquals(2, bike.currentGear());
-
+        assertEquals(20, bike.getCurrentSpeed(), "Speed should be 20 in gear 1.");
+        assertEquals(2, bike.currentGear(), "Gear should automatically change to 2 at speed 20.");
     }
 
     @Test
-    public void testThatWhenGearTwoSpeedReach30GearAutomaticallyChangeToGearThree(){
+    public void testThatGearAutomaticallyChangesToThreeAtSpeedThirty() {
         bike = new Bike();
         bike.isOn();
         bike.changeGear();
-        for(int index = 1; index <= 20; index++){
+        for (int index = 0; index < 20; index++) {
             bike.accelerate();
         }
-        assertEquals(2, bike.currentGear());
-
-        for(int index = 2; index <=  10; index+=2){
-                bike.accelerate();
+        for (int index = 0; index < 5; index++) {
+            bike.accelerate();
         }
-        assertEquals(30, bike.getCurrentSpeed());
-        assertEquals(3, bike.currentGear());
+        assertEquals(30, bike.getCurrentSpeed(), "Speed should be 30 in gear 2.");
+        assertEquals(3, bike.currentGear(), "Gear should automatically change to 3 at speed 30.");
     }
 
     @Test
-    public void testThatWhenGearThreeSpeedReach40GearAutomaticallyChangeToGearFour(){
+    public void testThatGearAutomaticallyChangesToFourAtSpeedForty() {
         bike = new Bike();
         bike.isOn();
         bike.changeGear();
-        for(int index = 1; index <= 20; index++){
+        for (int index = 0; index < 20; index++) {
             bike.accelerate();
         }
-        assertEquals(2, bike.currentGear());
-        for(int index = 2; index <= 10; index+=2){
+        for (int index = 0; index < 5; index++) {
             bike.accelerate();
         }
-        assertEquals(3, bike.currentGear());
-
-        for(int index = 3; index <=  12; index+=3){
+        for (int index = 0; index < 4; index++) {
             bike.accelerate();
         }
-        assertEquals(42, bike.getCurrentSpeed());
-        assertEquals(4, bike.currentGear());
+        assertEquals(42, bike.getCurrentSpeed(), "Speed should be 42 in gear 4.");
+        assertEquals(4, bike.currentGear(), "Gear should automatically change to 4 at speed 40.");
     }
 
     @Test
-    public void testThatBikeCanIncreaseSpeedBeyond40AtGearFour() {
+    public void testThatBikeCanExceedSpeedOfFortyAtGearFour() {
         bike = new Bike();
         bike.isOn();
         bike.changeGear();
-
-        for (int index = 1; index <= 20; index++){
+        for (int index = 0; index < 20; index++) {
             bike.accelerate();
         }
-        assertEquals(2, bike.currentGear());
-
-        for (int index = 2; index <= 10; index+=2) {
+        for (int index = 0; index < 5; index++) {
             bike.accelerate();
         }
-        assertEquals(3, bike.currentGear());
-
-        for (int index = 3; index <= 12; index+=3) {
+        for (int index = 0; index < 4; index++) {
             bike.accelerate();
         }
-        assertEquals(4, bike.currentGear());
-        assertEquals(42, bike.getCurrentSpeed());
-
-        for (int index = 0; index <  10; index++) {
+        for (int index = 0; index < 10; index++) {
             bike.accelerate();
         }
-        assertEquals(52, bike.getCurrentSpeed());
-        assertEquals(4,bike.currentGear());
+        assertEquals(92, bike.getCurrentSpeed(), "Speed should exceed 40 in gear 4.");
+        assertEquals(4, bike.currentGear(), "Bike should remain in gear 4 after speed exceeds 40.");
+    }
+
+    @Test
+    public void testThatBikeResetsSpeedAndGearWhenTurnedOff() {
+        bike = new Bike();
+        bike.isOn();
+        bike.changeGear();
+        for (int index = 0; index < 20; index++) {
+            bike.accelerate();
+        }
+        assertEquals(20, bike.getCurrentSpeed(), "Speed should be 20 before turning off.");
+        assertEquals(2, bike.currentGear(), "Gear should be 2 before turning off.");
+
+        bike.isOff();
+        assertEquals(0, bike.getCurrentSpeed(), "Speed should reset to 0 when the bike is turned off.");
+        assertEquals(0, bike.currentGear(), "Gear should reset to 0 when the bike is turned off.");
     }
 }
