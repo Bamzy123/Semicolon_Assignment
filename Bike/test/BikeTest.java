@@ -72,7 +72,7 @@ public class BikeTest {
         bike = new Bike();
         bike.isOn();
         bike.changeGear();
-        for(int index = 0; index < 20; index++){
+        for(int index = 1; index <= 20; index++){
             bike.accelerate();
         }
         assertEquals(20, bike.getCurrentSpeed());
@@ -106,8 +106,7 @@ public class BikeTest {
             bike.accelerate();
         }
         assertEquals(2, bike.currentGear());
-
-        for(int index = 2; index <=  10; index+=2){
+        for(int index = 2; index <= 10; index+=2){
             bike.accelerate();
         }
         assertEquals(3, bike.currentGear());
@@ -117,5 +116,34 @@ public class BikeTest {
         }
         assertEquals(42, bike.getCurrentSpeed());
         assertEquals(4, bike.currentGear());
+    }
+
+    @Test
+    public void testThatBikeCanIncreaseSpeedBeyond40AtGearFour() {
+        bike = new Bike();
+        bike.isOn();
+        bike.changeGear();
+
+        for (int index = 1; index <= 20; index++){
+            bike.accelerate();
+        }
+        assertEquals(2, bike.currentGear());
+
+        for (int index = 2; index <= 10; index+=2) {
+            bike.accelerate();
+        }
+        assertEquals(3, bike.currentGear());
+
+        for (int index = 3; index <= 12; index+=3) {
+            bike.accelerate();
+        }
+        assertEquals(4, bike.currentGear());
+        assertEquals(42, bike.getCurrentSpeed());
+
+        for (int index = 0; index <  10; index++) {
+            bike.accelerate();
+        }
+        assertEquals(52, bike.getCurrentSpeed());
+        assertEquals(4,bike.currentGear());
     }
 }

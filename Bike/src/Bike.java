@@ -42,7 +42,8 @@ public class Bike {
         else if(currentGear==4) {
             System.out.println(currentSpeed);
             currentSpeed +=4;
-            if(currentSpeed==50) currentGear++;
+             currentGear++;
+
         }
     }
 
