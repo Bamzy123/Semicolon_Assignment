@@ -63,4 +63,40 @@ public class AccountTest {
         account.withdraw(100, pin);
         assertEquals(100, account.getBalance());
     }
+
+    @Test
+    public void testWithdrawInvalidPin() {
+        String pin = "1234";
+        String name = "stephen";
+        Account account = new Account(pin, name);
+
+        account.deposit(200);
+
+        Exception exception = null;
+        try {
+            account.withdraw(100, "0000");
+        } catch (SecurityException e) {
+            exception = e;
+        }
+        assertNotNull(exception);
+        assertTrue(exception.getMessage().contains("Invalid PIN"));
+    }
+
+    @Test
+    public void testWithdrawMoreThanBalance() {
+        String pin = "1234";
+        String name = "stephen";
+        Account account = new Account(pin, name);
+
+        account.deposit(100);
+
+        Exception exception = null;
+        try {
+            account.withdraw(200, pin);
+        } catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertNotNull(exception);
+        assertTrue(exception.getMessage().contains("Insufficient balance"));
+    }
 }
