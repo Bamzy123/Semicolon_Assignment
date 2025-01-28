@@ -163,4 +163,42 @@ public class AccountTest {
 
         assertEquals(100, account.getBalance());
     }
-}
+
+    @Test
+    public void testUpdatePinToSamePin() {
+        String pin = "1234";
+        String name = "stephen";
+        Account account = new Account(pin, name);
+
+        account.updatePin("1234", "1234");
+
+        account.deposit(200);
+        account.withdraw(100, "1234");
+
+        assertEquals(100, account.getBalance());
+    }
+
+    @Test
+        public void testUpdatePinWithIncorrectCurrentPin() {
+            String pin = "1234";
+            String name = "stephen";
+            Account account = new Account(pin, name);
+
+            Exception exception = null;
+
+            try {
+                account.updatePin("0000", "5678");
+            } catch (SecurityException e) {
+                exception = e;
+            }
+
+            assertNotNull(exception);
+            assertTrue(exception.getMessage().contains("Current PIN is incorrect"));
+
+            account.deposit(200);
+            account.withdraw(100, "1234");
+
+            assertEquals(100, account.getBalance(), "Old PIN should still work after failed update");
+        }
+
+    }

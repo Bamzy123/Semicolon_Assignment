@@ -32,15 +32,9 @@ public class Account {
     }
 
     public void withdraw(int amount, String inputPin) {
-        if (!inputPin.equals(pin)) {
-            throw new SecurityException("Invalid PIN");
-        }
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Withdrawal amount must be greater than 0");
-        }
-        if (amount > balance) {
-            throw new IllegalArgumentException("Insufficient balance");
-        }
+        if (!inputPin.equals(pin)) throw new SecurityException("Invalid PIN");
+        if (amount <= 0) throw new IllegalArgumentException("Withdrawal amount must be greater than 0");
+        if (amount > balance) throw new IllegalArgumentException("Insufficient balance");
         balance -= amount;
     }
 
@@ -53,9 +47,12 @@ public class Account {
     }
 
     public void updatePin(String oldPin, String newPin) {
-        if (!oldPin.equals(pin)) {
+        if (!this.pin.equals(oldPin)) {
             throw new SecurityException("Invalid PIN");
         }
-        pin = newPin;
+        if (newPin == null || newPin.length() !=4) {
+            throw new IllegalArgumentException("New pin must be exactly 4 digits");
+        }
+        this.pin = newPin;
     }
 }
