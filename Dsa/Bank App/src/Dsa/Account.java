@@ -43,4 +43,19 @@ public class Account {
         }
         balance -= amount;
     }
+
+    public int checkBalance(String inputPin) {
+        if (inputPin.equals(pin)) {
+            return balance;
+        } else {
+            throw new SecurityException("Invalid PIN");
+        }
+    }
+
+    public void updatePin(String oldPin, String newPin) {
+        if (!oldPin.equals(pin)) {
+            throw new SecurityException("Invalid PIN");
+        }
+        pin = newPin;
+    }
 }

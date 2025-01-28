@@ -99,4 +99,68 @@ public class AccountTest {
         assertNotNull(exception);
         assertTrue(exception.getMessage().contains("Insufficient balance"));
     }
+
+    @Test
+    public void testWithdrawNegativeAmount() {
+        String pin = "1234";
+        String name = "stephen";
+        Account account = new Account(pin, name);
+
+        account.deposit(100);
+
+        Exception exception = null;
+        try {
+            account.withdraw(-100, pin);
+        } catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertNotNull(exception);
+        assertTrue(exception.getMessage().contains("Withdrawal amount must be greater than 0"));
+    }
+
+    @Test
+    public void testWithdrawZeroAmount() {
+        String pin = "1234";
+        String name = "stephen";
+        Account account = new Account(pin, name);
+
+        account.deposit(100);
+
+        Exception exception = null;
+        try {
+            account.withdraw(0, pin);
+        } catch (IllegalArgumentException e) {
+            exception = e;
+        }
+        assertNotNull(exception);
+        assertTrue(exception.getMessage().contains("Withdrawal amount must be greater than 0"));
+    }
+
+    @Test
+    public void testCheckBalance() {
+        String pin = "1234";
+        String name = "stephen";
+        Account account = new Account(pin, name);
+
+        assertEquals(0, account.getBalance());
+        account.deposit(200);
+        assertEquals(200, account.getBalance());
+
+        assertEquals(200,account.checkBalance(pin));
+
+    }
+
+    @Test
+    public void testUpdatePinSuccessfully() {
+        String pin = "1234";
+        String name = "stephen";
+        Account account = new Account(pin, name);
+
+        account.updatePin("1234", "5678");
+
+        account.deposit(200);
+        account.withdraw(100, "5678");
+
+        assertEquals(100, account.getBalance());
+    }
 }
