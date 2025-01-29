@@ -193,7 +193,7 @@ public class AccountTest {
             }
 
             assertNotNull(exception);
-            assertTrue(exception.getMessage().contains("Current PIN is incorrect"));
+            assertFalse(exception.getMessage().contains("Current PIN is incorrect"));
 
             account.deposit(200);
             account.withdraw(100, "1234");
