@@ -39,8 +39,8 @@ public class Account {
     }
 
     public int checkBalance(String inputPin) {
-        if (inputPin.equals(pin)) return balance;
-        else throw new SecurityException("Invalid PIN");
+        if (!this.pin.equals(inputPin)) throw new SecurityException("Invalid PIN");
+        return balance;
     }
 
     public void updatePin(String oldPin, String newPin) {
@@ -48,5 +48,13 @@ public class Account {
         if (newPin == null || newPin.length() !=4)
             throw new IllegalArgumentException("New pin must be exactly 4 digits");
         this.pin = newPin;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean validatePin(String senderPin) {
+        return this.pin.equals(senderPin);
     }
 }
