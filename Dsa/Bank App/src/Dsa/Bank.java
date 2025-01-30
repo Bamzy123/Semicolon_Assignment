@@ -19,7 +19,7 @@ public class Bank {
         return null;
     }
 
-    public void deposit(String name, int amount) {
+    public void deposit(int amount, String name) {
         Account account = findAccount(name);
         if (account != null) account.deposit(amount);
         else throw new IllegalArgumentException("Account not found");
@@ -37,7 +37,7 @@ public class Bank {
         else throw new IllegalArgumentException("Account not found");
     }
 
-    public void transfer(String senderName, String receiverName, String senderPin, int amount) {
+    public void transfer(String senderPin, String senderName, String receiverName, int amount) {
         Account sender = findAccount(senderName);
         Account receiver = findAccount(receiverName);
 

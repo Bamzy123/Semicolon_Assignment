@@ -12,7 +12,7 @@ public class BankTest {
         String pin = "1234";
         String name = "stephen";
         bank.createAccount(pin, name);
-        bank.deposit(name, 1000);
+        bank.deposit(1000, name);
         Account account = bank.findAccount(name);
         assertNotNull(account);
         assertEquals(1000, account.getBalance());
@@ -24,7 +24,7 @@ public class BankTest {
         String pin = "1234";
         String name = "stephen";
         bank.createAccount(pin, name);
-        bank.deposit(name, 1000);
+        bank.deposit(1000,name);
         assertEquals(1000, bank.checkBalance(pin, name));
 
         bank.withdraw(pin, name, 200);
@@ -38,7 +38,7 @@ public class BankTest {
             String name = "stephen";
 
             bank.createAccount(correctPin, name);
-            bank.deposit(name, 1000);
+            bank.deposit(1000, name);
 
             Exception exception = assertThrows(SecurityException.class, () -> {
                 bank.withdraw(wrongPin, name, 200);
@@ -54,7 +54,7 @@ public class BankTest {
         String name = "stephen";
 
         bank.createAccount(pin, name);
-        bank.deposit(name, 1000);
+        bank.deposit(1000, name);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             bank.withdraw(pin, name, 2000);
@@ -71,7 +71,7 @@ public class BankTest {
         String name = "stephen";
 
         bank.createAccount(pin, name);
-        bank.deposit(name, 1000);
+        bank.deposit(1000, name);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             bank.withdraw(pin, name, -500);
@@ -92,10 +92,11 @@ public class BankTest {
         bank.createAccount(senderPin, senderName);
         bank.createAccount(receiverPin, receiverName);
 
-        bank.deposit(senderName, 1000);
+        bank.deposit(1000, senderName);
         assertEquals(1000, bank.checkBalance(senderPin, senderName));
 
-        bank.transfer(senderName, receiverName, senderPin, 500);
+//        bank.transfer(senderName, receiverName, senderPin, 500);
+        bank.transfer(senderPin, senderName, receiverName, 500);
 
         assertEquals(500, bank.checkBalance(senderPin, senderName));
         assertEquals(500, bank.checkBalance(receiverPin, receiverName));

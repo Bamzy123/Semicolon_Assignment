@@ -45,7 +45,7 @@ public class Account {
 
     public void updatePin(String oldPin, String newPin) {
         if (!this.pin.equals(oldPin)) throw new SecurityException("Invalid PIN");
-        if (newPin == null || newPin.length() !=4)
+        if (newPin == null || newPin.length() != 4)
             throw new IllegalArgumentException("New pin must be exactly 4 digits");
         this.pin = newPin;
     }
