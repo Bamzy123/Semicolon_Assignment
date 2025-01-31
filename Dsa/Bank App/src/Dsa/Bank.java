@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Bank {
     private ArrayList<Account> accounts;
+
     public Bank() {
         this.accounts = new ArrayList<>();
     }
+
     public void createAccount(String pin, String name) {
         accounts.add(new Account(pin, name));
     }
 
     public Account findAccount(String name) {
-        for (Account account : accounts) {
-            if (account.getName().equals(name));
-            return account;
-        }
+        for (Account account : accounts)
+            if (account.getName().equals(name)) return account;
         return null;
     }
 
@@ -41,11 +41,20 @@ public class Bank {
         Account sender = findAccount(senderName);
         Account receiver = findAccount(receiverName);
 
-        if (!sender.validatePin(senderPin)) throw new SecurityException("Invalid PIN");
-
+        if (sender == null || receiver == null)
+            throw new IllegalArgumentException("Sender or receiver account not found");
+        if (sender.validatePin(senderPin)) throw new SecurityException("Invalid PIN");
+        if (amount <= 0) throw new IllegalArgumentException("Transfer amount must be greater than 0");
         if (sender.getBalance() < amount) throw new IllegalArgumentException("Insufficient balance");
 
         sender.withdraw(amount, senderPin);
         receiver.deposit(amount);
+    }
+
+    public void closeAccount(String name, String pin) {
+        Account account = findAccount(name);
+        if (account == null) throw new IllegalArgumentException("Account not found");
+        if (account.validatePin(pin)) throw new SecurityException("Invalid PIN");
+        accounts.remove(account);
     }
 }

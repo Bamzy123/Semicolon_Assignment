@@ -18,7 +18,6 @@ public class Account {
         return itExist;
     }
     public boolean notExist() {
-        itExist = false;
         return false;
     }
 
@@ -55,6 +54,6 @@ public class Account {
     }
 
     public boolean validatePin(String senderPin) {
-        return this.pin.equals(senderPin);
+        return !this.pin.equals(senderPin);
     }
 }
