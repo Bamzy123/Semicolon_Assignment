@@ -26,5 +26,10 @@ public class DiaryTest {
     }
 
     @Test
-
+    void testDiaryCanBeLocked() {
+        Diary diary = new Diary("Bamsy", "password123");
+        diary.unlockDiary("password123");
+        diary.lockDiary();
+        assertTrue(diary.isLocked());
+    }
 }

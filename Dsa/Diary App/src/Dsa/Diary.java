@@ -23,4 +23,8 @@ public class Diary {
     public void unlockDiary(String inputPassword) {
         if (this.password.equals(inputPassword)) this.isLocked = false;
     }
+
+    public void lockDiary() {
+        this.isLocked = true;
+    }
 }
