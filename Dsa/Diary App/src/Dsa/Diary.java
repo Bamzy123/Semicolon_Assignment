@@ -8,7 +8,7 @@ public class Diary {
     private String userName;
     private String password;
     private boolean isLocked;
-    private List<Entry> entries;
+    private final List<Entry> entries;
 
     public Diary(String userName, String password) {
         this.userName = userName;
@@ -64,5 +64,9 @@ public class Diary {
 
     public void deleteEntry(int id) {
         entries.removeIf(entry -> entry.getId() == id);
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

@@ -3,7 +3,7 @@ package Dsa;
 import java.time.LocalDateTime;
 
 public class Entry {
-    private int id;
+    private final int id;
     private String title;
     private String body;
     private LocalDateTime dateCreated;
