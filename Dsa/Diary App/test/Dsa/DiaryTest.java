@@ -115,7 +115,7 @@ public class DiaryTest {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
-        assertDoesNotThrow(() -> diary.deleteEntry(99)); // Should not throw an exception
+        assertDoesNotThrow(() -> diary.deleteEntry(99));
     }
 
     @Test
@@ -127,7 +127,6 @@ public class DiaryTest {
         Entry entry = diary.findEntryById(1);
         LocalDateTime oldTimestamp = entry.getDateCreated();
 
-        // Wait a bit to ensure timestamp change is noticeable
         try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
 
         diary.updateEntry(1, "New Title", "New Body");

@@ -59,7 +59,7 @@ public class Diary {
         }
         entry.setTitle(newTitle);
         entry.setBody(newBody);
-        entry.setDateCreated(LocalDateTime.now()); // Update timestamp
+        entry.setDateCreated(LocalDateTime.now());
     }
 
     public void deleteEntry(int id) {
