@@ -2,6 +2,8 @@ package Dsa;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DiaryTest {
@@ -87,5 +89,50 @@ public class DiaryTest {
         Entry updatedEntry = diary.findEntryById(1);
         assertEquals("New Title", updatedEntry.getTitle());
         assertEquals("New Body", updatedEntry.getBody());
+    }
+
+    @Test
+    public void testUpdatingNonExistentEntryThrowsException() {
+        Diary diary = new Diary("Bamsy", "password123");
+        diary.unlockDiary("password123");
+
+        assertThrows(IllegalArgumentException.class, () -> diary.updateEntry(99, "New Title", "New Body"));
+    }
+
+    @Test
+    public void testCanDeleteEntry() {
+        Diary diary = new Diary("Bamsy", "password123");
+        diary.unlockDiary("password123");
+
+        diary.createEntry("Title", "Body");
+        diary.deleteEntry(1);
+
+        assertNull(diary.findEntryById(1));
+    }
+
+    @Test
+    public void testDeletingNonExistentEntryDoesNothing() {
+        Diary diary = new Diary("Bamsy", "password123");
+        diary.unlockDiary("password123");
+
+        assertDoesNotThrow(() -> diary.deleteEntry(99)); // Should not throw an exception
+    }
+
+    @Test
+    public void testUpdatingEntryChangesTimestamp() {
+        Diary diary = new Diary("Bamsy", "password123");
+        diary.unlockDiary("password123");
+
+        diary.createEntry("Old Title", "Old Body");
+        Entry entry = diary.findEntryById(1);
+        LocalDateTime oldTimestamp = entry.getDateCreated();
+
+        // Wait a bit to ensure timestamp change is noticeable
+        try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
+
+        diary.updateEntry(1, "New Title", "New Body");
+        LocalDateTime newTimestamp = entry.getDateCreated();
+
+        assertTrue(newTimestamp.isAfter(oldTimestamp));
     }
 }

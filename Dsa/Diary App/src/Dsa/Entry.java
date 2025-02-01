@@ -38,5 +38,9 @@ public class Entry {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
 }
 

@@ -1,5 +1,6 @@
 package Dsa;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,29 @@ public class Diary {
          int newId = entries.size() + 1;
          Entry entry = new Entry(newId, title, body);
           entries.add(entry);
+    }
+
+    public Entry findEntryById(int id) {
+        for (Entry entry : entries) {
+            if (entry.getId() == id) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    public void updateEntry(int id, String newTitle, String newBody) {
+        Entry entry = findEntryById(id);
+        if (entry == null) {
+            throw new IllegalArgumentException("Entry with ID " + id + " not found.");
+        }
+        entry.setTitle(newTitle);
+        entry.setBody(newBody);
+        entry.setDateCreated(LocalDateTime.now()); // Update timestamp
+    }
+
+    public void deleteEntry(int id) {
+        entries.removeIf(entry -> entry.getId() == id);
     }
 
 }
