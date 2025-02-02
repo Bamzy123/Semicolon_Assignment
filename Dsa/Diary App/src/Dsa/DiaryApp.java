@@ -2,10 +2,19 @@ package Dsa;
 
 import javax.swing.JOptionPane;
 
-public class DiaryBook {
-    public static void main(String[] args) {
+public class DiaryApp {
+    public static void main(String... args) {
+        String userName = JOptionPane.showInputDialog("Enter your name");
+        if (userName == null || userName.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+        }
 
-        Diary diary = new Diary("Bamsy", "password123");
+        String password = JOptionPane.showInputDialog("Enter your password");
+        if (password == null || password.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Password cannot be empty");
+        }
+
+        Diary diary = new Diary(userName, password);
 
         String inputPassword = JOptionPane.showInputDialog("Enter the password to unlock your diary:");
         diary.unlockDiary(inputPassword);
