@@ -4,40 +4,46 @@ import javax.swing.JOptionPane;
 
 public class DiaryApp {
     public static void main(String... args) {
-        String userName = JOptionPane.showInputDialog("Enter your name");
+
+        String userName = JOptionPane.showInputDialog("Enter your name:");
         if (userName == null || userName.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+            JOptionPane.showMessageDialog(null, "Name cannot be empty. Exiting application.");
+            System.exit(0);
         }
 
-        String password = JOptionPane.showInputDialog("Enter your password");
+        String password = JOptionPane.showInputDialog("Enter your password:");
         if (password == null || password.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Password cannot be empty");
+            JOptionPane.showMessageDialog(null, "Password cannot be empty. Exiting application.");
+            System.exit(0);
         }
 
         Diary diary = new Diary(userName, password);
 
-        String inputPassword = JOptionPane.showInputDialog("Enter the password to unlock your diary:");
-        diary.unlockDiary(inputPassword);
+         diary.unlockDiary(password);
 
         if (diary.isLocked()) {
-            JOptionPane.showMessageDialog(null, "Incorrect password. Exiting application.");
+            JOptionPane.showMessageDialog(null, "Unable to unlock your diary. Exiting application.");
             System.exit(0);
         }
 
         JOptionPane.showMessageDialog(null, "Diary unlocked successfully!");
 
-        String menu = "Select an option:\n"
-                + "1. Create a new entry\n"
-                + "2. Update an existing entry\n"
-                + "3. Delete an entry\n"
-                + "4. View an entry\n"
-                + "5. Exit";
+        String menu = """
+                Select an option:
+                1. Create a new entry
+                2. Update an existing entry
+                3. Delete an entry
+                4. View an entry
+                5. Lock diary
+                6. Unlock diary
+                7. Exit""";
 
         while (true) {
             String choice = JOptionPane.showInputDialog(menu);
             if (choice == null) break;
 
             switch (choice) {
+
                 case "1" -> {
                     String title = JOptionPane.showInputDialog("Enter entry title:");
                     String body = JOptionPane.showInputDialog("Enter entry body:");
@@ -48,6 +54,7 @@ public class DiaryApp {
                         JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                     }
                 }
+
                 case "2" -> {
                     try {
                         String updateIdStr = JOptionPane.showInputDialog("Enter the ID of the entry to update:");
@@ -60,16 +67,19 @@ public class DiaryApp {
                         JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                     }
                 }
+
                 case "3" -> {
+
                     try {
                         String deleteIdStr = JOptionPane.showInputDialog("Enter the ID of the entry to delete:");
                         int deleteId = Integer.parseInt(deleteIdStr);
                         diary.deleteEntry(deleteId);
-                        JOptionPane.showMessageDialog(null, "Entry deleted (if it existed).");
+                        JOptionPane.showMessageDialog(null, "Entry deleted...");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                     }
                 }
+
                 case "4" -> {
                     try {
                         String viewIdStr = JOptionPane.showInputDialog("Enter the ID of the entry to view:");
@@ -88,12 +98,28 @@ public class DiaryApp {
                         JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                     }
                 }
+
                 case "5" -> {
+                    diary.lockDiary();
+                    JOptionPane.showMessageDialog(null, "Diary has been locked.");
+                }
+
+                case "6" -> {
+                    String unlockPass = JOptionPane.showInputDialog("Enter the password to unlock your diary:");
+                    diary.unlockDiary(unlockPass);
+                    if (diary.isLocked()) {
+                        JOptionPane.showMessageDialog(null, "Incorrect password. Diary remains locked.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Diary unlocked successfully!");
+                    }
+                }
+
+                case "7" -> {
                     JOptionPane.showMessageDialog(null, "Exiting the Diary App. Goodbye!");
                     System.exit(0);
                 }
                 default ->
-                        JOptionPane.showMessageDialog(null, "Invalid choice. Please enter a number between 1 and 5.");
+                        JOptionPane.showMessageDialog(null, "Invalid choice. Please enter a number between 1 and 7.");
             }
         }
     }
