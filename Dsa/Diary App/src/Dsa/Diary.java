@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Diary {
-    private String userName;
-    private String password;
+    private final String userName;
+    private final String password;
     private boolean isLocked;
     private final List<Entry> entries;
 
@@ -30,33 +30,22 @@ public class Diary {
     }
 
     public void createEntry(String title, String body) {
-        if (isLocked) {
-            throw new IllegalStateException("Diary is locked! Unlock it to create an entry.");
-        }
+        if (isLocked) throw new IllegalStateException("Diary is locked! Unlock it to create an entry.");
 
-        if (title.isBlank() || body.isBlank()) {
-            throw new IllegalArgumentException("Title and body cannot be empty.");
-        }
+        if (title.isBlank() || body.isBlank()) throw new IllegalArgumentException("Title and body cannot be empty.");
 
-         int newId = entries.size() + 1;
-         Entry entry = new Entry(newId, title, body);
-          entries.add(entry);
+        int newId = entries.size() + 1;
+        Entry entry = new Entry(newId, title, body);
+        entries.add(entry);
     }
 
     public Entry findEntryById(int id) {
-        for (Entry entry : entries) {
-            if (entry.getId() == id) {
-                return entry;
-            }
-        }
-        return null;
+        return entries.stream().filter(entry -> entry.getId() == id).findFirst().orElse(null);
     }
 
     public void updateEntry(int id, String newTitle, String newBody) {
         Entry entry = findEntryById(id);
-        if (entry == null) {
-            throw new IllegalArgumentException("Entry with ID " + id + " not found.");
-        }
+        if (entry == null) throw new IllegalArgumentException("Entry with ID " + id + " not found.");
         entry.setTitle(newTitle);
         entry.setBody(newBody);
         entry.setDateCreated(LocalDateTime.now());

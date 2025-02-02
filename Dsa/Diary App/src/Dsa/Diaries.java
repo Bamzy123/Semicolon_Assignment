@@ -15,12 +15,7 @@ public class Diaries {
     }
 
     public Diary findDiaryByUsername(String userName) {
-        for (Diary diary : diaries) {
-            if (diary.getUserName().equals(userName)) {
-                return diary;
-            }
-        }
-        return null;
+        return diaries.stream().filter(diary -> diary.getUserName().equals(userName)).findFirst().orElse(null);
     }
 
     public void deleteDiary(String userName) {
