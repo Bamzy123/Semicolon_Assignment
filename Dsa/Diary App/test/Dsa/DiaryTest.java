@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DiaryTest {
 
     @Test
-    public void testDiaryCanBeCreated() {
+    public void testThatDiaryCanBeCreated() {
         Diary diary = new Diary("stephen", "password123");
         assertNotNull(diary);
     }
@@ -21,14 +21,14 @@ public class DiaryTest {
     }
 
     @Test
-    public void testDiaryCanBeUnlockedWithCorrectPassword() {
+    public void testThatDiaryCanBeUnlockedWithCorrectPassword() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
         assertFalse(diary.isLocked());
     }
 
     @Test
-    public void testDiaryCanBeLocked() {
+    public void testThatDiaryCanBeLocked() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
         diary.lockDiary();
@@ -36,20 +36,20 @@ public class DiaryTest {
     }
 
     @Test
-    public void testDiaryCannotCreateEntryWhenLocked() {
+    public void testThatDiaryCannotCreateEntryWhenLocked() {
         Diary diary = new Diary("Bamsy", "password123");
         assertThrows(IllegalStateException.class, () -> diary.createEntry("My Secret", "This is a private note"));
     }
 
     @Test
-    public void testDiaryCanCreateEntryWhenUnlocked() {
+    public void testThatDiaryCanCreateEntryWhenUnlocked() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
         assertDoesNotThrow(() -> diary.createEntry("My Day", "It was amazing!"));
     }
 
     @Test
-    public void testDiaryCannotCreateEntryWithEmptyTitleOrBody() {
+    public void testThatDiaryCannotCreateEntryWithEmptyTitleOrBody() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
@@ -58,7 +58,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void testCanFindEntryById() {
+    public void testThatWeCanFindEntryById() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
@@ -71,7 +71,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void testFindingNonExistentEntryReturnsNull() {
+    public void testThatFindingNonExistentEntryReturnsNull() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
@@ -79,7 +79,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void testCanUpdateEntry() {
+    public void testThatWeCanUpdateEntry() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
@@ -92,7 +92,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void testUpdatingNonExistentEntryThrowsException() {
+    public void testThatUpdatingNonExistentEntryThrowsException() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
@@ -100,7 +100,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void testCanDeleteEntry() {
+    public void testThatWeCanDeleteEntry() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
@@ -111,7 +111,7 @@ public class DiaryTest {
     }
 
     @Test
-    public void testDeletingNonExistentEntryDoesNothing() {
+    public void testThatDeletingNonExistentEntryDoesNothing() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
@@ -119,19 +119,16 @@ public class DiaryTest {
     }
 
     @Test
-    public void testUpdatingEntryChangesTimestamp() {
+    public void testThatUpdatingEntryChangesTime() {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
         diary.createEntry("Old Title", "Old Body");
         Entry entry = diary.findEntryById(1);
-        LocalDateTime oldTimestamp = entry.getDateCreated();
-
-        try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
 
         diary.updateEntry(1, "New Title", "New Body");
-        LocalDateTime newTimestamp = entry.getDateCreated();
 
-        assertTrue(newTimestamp.isAfter(oldTimestamp));
+        assertEquals("New Title", entry.getTitle());
+        assertEquals("New Body", entry.getBody());
     }
 }

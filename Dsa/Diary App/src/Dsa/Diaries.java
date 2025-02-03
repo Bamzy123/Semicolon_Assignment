@@ -15,10 +15,11 @@ public class Diaries {
     }
 
     public Diary findDiaryByUsername(String userName) {
-        return diaries.stream().filter(diary -> diary.getUserName().equals(userName)).findFirst().orElse(null);
+        for (Diary diary : diaries) if (diary.getUserName().equals(userName)) return diary;
+        return null;
     }
 
     public void deleteDiary(String userName) {
-        diaries.removeIf(diary -> diary.getUserName().equals(userName));
+        for (Diary diary : diaries) if (diary.getUserName().equals(userName)) diaries.remove(diary);
     }
 }

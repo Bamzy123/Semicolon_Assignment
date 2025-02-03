@@ -88,12 +88,9 @@ public class DiaryApp {
                         if (entry != null) {
                             String details = "ID: " + entry.getId() + "\n"
                                     + "Title: " + entry.getTitle() + "\n"
-                                    + "Body: " + entry.getBody() + "\n"
-                                    + "Created On: " + entry.getDateCreated();
+                                    + "Body: " + entry.getBody() + "\n";
                             JOptionPane.showMessageDialog(null, details);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "No entry found with that ID.");
-                        }
+                        } else JOptionPane.showMessageDialog(null, "No entry found with that ID.");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                     }
@@ -107,19 +104,17 @@ public class DiaryApp {
                 case "6" -> {
                     String unlockPass = JOptionPane.showInputDialog("Enter the password to unlock your diary:");
                     diary.unlockDiary(unlockPass);
-                    if (diary.isLocked()) {
+                    if (diary.isLocked())
                         JOptionPane.showMessageDialog(null, "Incorrect password. Diary remains locked.");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Diary unlocked successfully!");
-                    }
+                    else JOptionPane.showMessageDialog(null, "Diary unlocked successfully!");
                 }
 
                 case "7" -> {
-                    JOptionPane.showMessageDialog(null, "Exiting the Diary App. Goodbye!");
+                    JOptionPane.showMessageDialog(null, "Exiting the Diary App, Goodbye!");
                     System.exit(0);
                 }
                 default ->
-                        JOptionPane.showMessageDialog(null, "Invalid choice. Please enter a number between 1 and 7.");
+                        JOptionPane.showMessageDialog(null, "Invalid choice, Please enter a number between 1 and 7.");
             }
         }
     }
