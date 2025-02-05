@@ -88,7 +88,9 @@ public class DiaryApp {
                         if (entry != null) {
                             String details = "ID: " + entry.getId() + "\n"
                                     + "Title: " + entry.getTitle() + "\n"
-                                    + "Body: " + entry.getBody() + "\n";
+                                    + "Body: " + entry.getBody() + "\n"
+                                    + "Created On: " + entry.getDateCreated();
+
                             JOptionPane.showMessageDialog(null, details);
                         } else JOptionPane.showMessageDialog(null, "No entry found with that ID.");
                     } catch (Exception e) {

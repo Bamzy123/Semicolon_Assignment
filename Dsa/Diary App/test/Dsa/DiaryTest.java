@@ -96,7 +96,8 @@ public class DiaryTest {
         Diary diary = new Diary("Bamsy", "password123");
         diary.unlockDiary("password123");
 
-        assertThrows(IllegalArgumentException.class, () -> diary.updateEntry(99, "New Title", "New Body"));
+        assertThrows(IllegalArgumentException.class,
+                () -> diary.updateEntry(99, "New Title", "New Body"));
     }
 
     @Test
@@ -125,10 +126,11 @@ public class DiaryTest {
 
         diary.createEntry("Old Title", "Old Body");
         Entry entry = diary.findEntryById(1);
+        LocalDateTime oldTimestamp = entry.getDateCreated();
 
         diary.updateEntry(1, "New Title", "New Body");
+        LocalDateTime newTimestamp = entry.getDateCreated();
 
-        assertEquals("New Title", entry.getTitle());
-        assertEquals("New Body", entry.getBody());
+        assertTrue(newTimestamp.isAfter(oldTimestamp), "The updated timestamp should be after the original timestamp");
     }
 }

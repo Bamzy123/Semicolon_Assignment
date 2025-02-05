@@ -1,9 +1,12 @@
 package Dsa;
 
+import java.time.LocalDateTime;
+
 public class Entry {
     private final int id;
     private String title;
     private String body;
+    private LocalDateTime dateCreated;
 
     public Entry(int id, String title, String body) {
         this.id = id;
@@ -30,5 +33,12 @@ public class Entry {
     public void setBody(String body) {
         this.body = body;
     }
-}
 
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+}
