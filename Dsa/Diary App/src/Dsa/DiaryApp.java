@@ -7,13 +7,13 @@ public class DiaryApp {
 
         String userName = JOptionPane.showInputDialog("Enter your name:");
         if (userName == null || userName.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Name cannot be empty. Exiting application.");
+            JOptionPane.showMessageDialog(null, "Name cannot be empty, Exiting application.");
             System.exit(0);
         }
 
         String password = JOptionPane.showInputDialog("Enter your password:");
         if (password == null || password.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Password cannot be empty. Exiting application.");
+            JOptionPane.showMessageDialog(null, "Password cannot be empty, Exiting application.");
             System.exit(0);
         }
 
@@ -22,7 +22,7 @@ public class DiaryApp {
          diary.unlockDiary(password);
 
         if (diary.isLocked()) {
-            JOptionPane.showMessageDialog(null, "Unable to unlock your diary. Exiting application.");
+            JOptionPane.showMessageDialog(null, "Unable to unlock your diary, Exiting application.");
             System.exit(0);
         }
 
@@ -107,7 +107,7 @@ public class DiaryApp {
                     String unlockPass = JOptionPane.showInputDialog("Enter the password to unlock your diary:");
                     diary.unlockDiary(unlockPass);
                     if (diary.isLocked())
-                        JOptionPane.showMessageDialog(null, "Incorrect password. Diary remains locked.");
+                        JOptionPane.showMessageDialog(null, "Incorrect password, Diary remains locked.");
                     else JOptionPane.showMessageDialog(null, "Diary unlocked successfully!");
                 }
 

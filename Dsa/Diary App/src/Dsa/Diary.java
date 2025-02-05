@@ -51,7 +51,7 @@ public class Diary {
     }
 
     public void deleteEntry(int id) {
-        for (Entry entry : entries) if (entry.getId() == id) entries.remove(entry);
+        entries.removeIf(entry -> entry.getId() == id);
     }
 
     public String getUserName() {
