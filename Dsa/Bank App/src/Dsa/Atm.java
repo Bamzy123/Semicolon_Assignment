@@ -30,11 +30,8 @@ public class Atm {
         while (true) {
             try {
                 int choice = Integer.parseInt(scanner.nextLine());
-                if (choice >= 1 && choice <= 7) {
-                    return choice;
-                } else {
-                    System.out.println("Invalid choice. Please select a number between 1 and 7.");
-                }
+                if (choice >= 1 && choice <= 7) return choice;
+                System.out.println("Invalid choice. Please select a number between 1 and 7.");
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a valid number.");
             }

@@ -3,7 +3,7 @@ package Dsa;
 import java.util.ArrayList;
 
 public class Bank {
-    private ArrayList<Account> accounts;
+    private final ArrayList<Account> accounts;
 
     public Bank() {
         this.accounts = new ArrayList<>();
@@ -14,8 +14,7 @@ public class Bank {
     }
 
     public Account findAccount(String name) {
-        for (Account account : accounts)
-            if (account.getName().equals(name)) return account;
+        for (Account account : accounts) if (account.getName().equals(name)) return account;
         return null;
     }
 

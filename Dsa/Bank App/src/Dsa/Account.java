@@ -2,9 +2,9 @@ package Dsa;
 
 public class Account {
     private int balance;
-    private boolean itExist;
+    private final boolean itExist;
     private String pin;
-    private String name;
+    private final String name;
 
     public Account(String pin, String name) {
         this.balance = 0;

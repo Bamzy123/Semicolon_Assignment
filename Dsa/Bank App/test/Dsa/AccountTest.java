@@ -200,5 +200,4 @@ public class AccountTest {
 
             assertEquals(100, account.getBalance(), "Old PIN should still work after failed update");
         }
-
     }
