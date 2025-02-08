@@ -6,7 +6,7 @@ public class Atm {
     private static final Bank bank = new Bank();
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         do {
             displayMenu();
             int choice = getUserChoice();
@@ -40,29 +40,17 @@ public class Atm {
 
     private static void executeChoice(int choice) {
         switch (choice) {
-            case 1:
-                createAccount();
-                break;
-            case 2:
-                deposit();
-                break;
-            case 3:
-                withdraw();
-                break;
-            case 4:
-                transfer();
-                break;
-            case 5:
-                checkBalance();
-                break;
-            case 6:
-                closeAccount();
-                break;
-            case 7:
+            case 1 -> createAccount();
+            case 2 -> deposit();
+            case 3 -> withdraw();
+            case 4 -> transfer();
+            case 5 -> checkBalance();
+            case 6 -> closeAccount();
+            case 7 -> {
                 System.out.println("Exiting system. Goodbye!");
                 System.exit(0);
-                break;
-            default:
+            }
+            default ->
                 System.out.println("Invalid choice. Please try again.");
         }
     }
