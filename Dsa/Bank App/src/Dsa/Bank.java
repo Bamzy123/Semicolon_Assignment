@@ -40,8 +40,7 @@ public class Bank {
         Account sender = findAccount(senderName);
         Account receiver = findAccount(receiverName);
 
-        if (sender == null || receiver == null)
-            throw new IllegalArgumentException("Sender or receiver account not found");
+        if (sender == null || receiver == null) throw new IllegalArgumentException("Sender or receiver account not found");
         if (sender.validatePin(senderPin)) throw new SecurityException("Invalid PIN");
         if (amount <= 0) throw new IllegalArgumentException("Transfer amount must be greater than 0");
         if (sender.getBalance() < amount) throw new IllegalArgumentException("Insufficient balance");
@@ -50,10 +49,10 @@ public class Bank {
         receiver.deposit(amount);
     }
 
-    public void closeAccount(String name, String pin) {
+    public void closeAccount(String pin, String name) {
         Account account = findAccount(name);
         if (account == null) throw new IllegalArgumentException("Account not found");
-        if (account.validatePin(pin)) throw new SecurityException("Invalid PIN");
+        if (!account.validatePin(pin)) throw new SecurityException("Invalid PIN");
         accounts.remove(account);
     }
 }

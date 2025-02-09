@@ -212,7 +212,7 @@ public class BankTest {
 
         assertNotNull(bank.findAccount(name));
 
-        bank.closeAccount(name, pin);
+        bank.closeAccount(pin, name);
 
         assertNull(bank.findAccount(name));
     }

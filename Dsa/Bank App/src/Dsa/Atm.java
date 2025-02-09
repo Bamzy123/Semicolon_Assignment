@@ -71,6 +71,7 @@ public class Atm {
         String pin = scanner.nextLine();
         System.out.print("Enter amount to deposit: ");
         int amount = scanner.nextInt();
+        scanner.nextLine();
         bank.deposit(amount, name);
         System.out.println("Deposit successful! New balance: " + bank.checkBalance(pin, name));
     }
@@ -82,6 +83,7 @@ public class Atm {
         String pin = scanner.nextLine();
         System.out.print("Enter amount to withdraw: ");
         int amount = scanner.nextInt();
+        scanner.nextLine();
         try {
             bank.withdraw(pin, name, amount);
             System.out.println("Withdrawal successful! New balance: " + bank.checkBalance(pin, name));
@@ -99,11 +101,14 @@ public class Atm {
         String receiverName = scanner.nextLine();
         System.out.print("Enter amount to transfer: ");
         int amount = scanner.nextInt();
+        scanner.nextLine();
         try {
             bank.transfer(senderPin, senderName, receiverName, amount);
             System.out.println("Transfer successful!");
             System.out.println("New balance for " + senderName + ": " + bank.checkBalance(senderPin, senderName));
-            System.out.println("New balance for " + receiverName + ": " + bank.checkBalance(senderPin, receiverName));
+            System.out.println("Enter receiver's pin: ");
+            String receiverPin = scanner.nextLine();
+            System.out.println("New balance for " + receiverName + ": " + bank.checkBalance(receiverPin, receiverName));
         } catch (IllegalArgumentException | SecurityException e) {
             System.out.println(e.getMessage());
         }
@@ -123,7 +128,7 @@ public class Atm {
         System.out.print("Enter PIN: ");
         String pin = scanner.nextLine();
         try {
-            bank.closeAccount(name, pin);
+            bank.closeAccount(pin, name);
             System.out.println("Account closed successfully!");
         } catch (IllegalArgumentException | SecurityException e) {
             System.out.println(e.getMessage());
