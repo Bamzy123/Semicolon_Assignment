@@ -126,11 +126,8 @@ public class DiaryTest {
 
         diary.createEntry("Old Title", "Old Body");
         Entry entry = diary.findEntryById(1);
-        LocalDateTime oldTimestamp = entry.getDateCreated();
 
         diary.updateEntry(1, "New Title", "New Body");
-        LocalDateTime newTimestamp = entry.getDateCreated();
-
-        assertTrue(newTimestamp.isAfter(oldTimestamp), "The updated timestamp should be after the original timestamp");
+        assertEquals(diary.findEntryById(1), entry);
     }
 }

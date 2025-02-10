@@ -47,7 +47,6 @@ public class Diary {
         if (entry == null) throw new IllegalArgumentException("Entry with ID " + id + " not found.");
         entry.setTitle(newTitle);
         entry.setBody(newBody);
-        entry.setDateCreated(LocalDateTime.now());
     }
 
     public void deleteEntry(int id) {

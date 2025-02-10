@@ -116,7 +116,7 @@ public class DiaryApp {
                     System.exit(0);
                 }
                 default ->
-                        JOptionPane.showMessageDialog(null, "Invalid choice, Please enter a number between 1 and 7.");
+                        JOptionPane.showMessageDialog(null, "Invalid choice, Please enter a number between 1 too 7.");
             }
         }
     }
